@@ -1,9 +1,9 @@
 #!/bin/bash
-yum install wget -y
-yum update -y
-yum groupinstall -y 'Development Tools' && yum install -y vim
-yum install -y epel-release
-yum install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel
+apt-get install wget -y
+apt-get update -y
+apt-get groupinstall -y 'Development Tools' && yum install -y vim
+apt-get install -y epel-release
+apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel
 curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz && tar xzvf LuaJIT-2.1.0-beta3.tar.gz
 wget https://github.com/simplresty/ngx_devel_kit/archive/v0.3.1rc1.tar.gz && tar xzvf v0.3.1rc1.tar.gz
@@ -47,5 +47,5 @@ PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
-#systemctl start nginx.service
-#systemctl daemon-reload
+systemctl start nginx.service
+systemctl daemon-reload
