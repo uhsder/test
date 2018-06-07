@@ -1,3 +1,4 @@
+#!/bin/bash
 yum install wget -y
 yum update -y
 yum groupinstall -y 'Development Tools' && yum install -y vim
