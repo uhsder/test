@@ -1,8 +1,6 @@
 #!/bin/bash
-apt-get install -y wget
 apt-get install -y build-essential 
-apt-get install -y vim
-apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++
+apt-get install -y wget vim perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++ --no-install-recommends
 curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
 wget https://github.com/simplresty/ngx_devel_kit/archive/v${NGXDEVEL_VER}.tar.gz
@@ -27,12 +25,12 @@ cd $curdir/nginx-${NGX_VER}/
          --lock-path=/var/lock/nginx.lock \
          --pid-path=/run/nginx.pid \
          --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
-         --add-module=../ngx_devel_kit-${NGXDEVEL_VER} \
-         --add-module=../lua-nginx-module-${LUANGX_VER} \
-         --with-pcre=../pcre-${PCRE_VER} \
+         --add-module=$curdir/ngx_devel_kit-${NGXDEVEL_VER} \
+         --add-module=$curdir/lua-nginx-module-${LUANGX_VER} \
+         --with-pcre=$curdir/pcre-${PCRE_VER} \
          --with-pcre-jit \
-         --with-zlib=../zlib-${ZLIB_VER} \
-         --with-openssl=../openssl-${OPENSSL_VER} \
+         --with-zlib=$curdir/zlib-${ZLIB_VER} \
+         --with-openssl=$curdir/openssl-${OPENSSL_VER} \
          --with-openssl-opt=no-nextprotoneg \
          --with-http_ssl_module
 make && make install
@@ -52,5 +50,12 @@ PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
-#systemctl start nginx.service
-#systemctl daemon-reload
+#
+rm -rf /var/lib/apt/lists/*
+rm -rf /ngx_devel_kit-${NGXDEVEL_VER}
+rm -rf /pcre-${PCRE_VER}
+rm -rf /lua-nginx-module-${LUANGX_VER}
+rm -rf /pcre-${PCRE_VER}
+rm -rf /openssl-${OPENSSL_VER}
+rm -rf /nginx-${NGX_VER}
+apt-get remove wget vim make gcc g++
