@@ -29,7 +29,7 @@ cd $curdir/nginx-${NGX_VER}/
          --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
          --add-module=../ngx_devel_kit-${NGXDEVEL_VER} \
          --add-module=../lua-nginx-module-${LUANGX_VER} \
-         --with-pcre=../cre-${PCRE_VER} \
+         --with-pcre=../pcre-${PCRE_VER} \
          --with-pcre-jit \
          --with-zlib=../zlib-${ZLIB_VER} \
          --with-openssl=../openssl-${OPENSSL_VER} \
