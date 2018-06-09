@@ -25,6 +25,7 @@ cd $curdir/nginx-${NGX_VER}/
          --sbin-path=/usr/sbin \
          --http-log-path=/var/log/nginx/access.log \
          --error-log-path=/var/log/nginx/error.log \
+         --lock-path=/var/lock/nginx.lock \
          --pid-path=/run/nginx.pid \
          --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
          --add-module=$curdir/ngx_devel_kit-${NGXDEVEL_VER} \
