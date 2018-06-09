@@ -27,12 +27,12 @@ cd $curdir/nginx-${NGX_VER}/
          --lock-path=/var/lock/nginx.lock \
          --pid-path=/run/nginx.pid \
          --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
-         --add-module=${curdir}ngx_devel_kit-${NGXDEVEL_VER} \
-         --add-module=${curdir}lua-nginx-module-${LUANGX_VER} \
-         --with-pcre=${curdir}cre-${PCRE_VER} \
+         --add-module=../ngx_devel_kit-${NGXDEVEL_VER} \
+         --add-module=../lua-nginx-module-${LUANGX_VER} \
+         --with-pcre=../cre-${PCRE_VER} \
          --with-pcre-jit \
-         --with-zlib=${curdir}zlib-${ZLIB_VER} \
-         --with-openssl=${curdir}openssl-${OPENSSL_VER} \
+         --with-zlib=../zlib-${ZLIB_VER} \
+         --with-openssl=../openssl-${OPENSSL_VER} \
          --with-openssl-opt=no-nextprotoneg \
          --with-http_ssl_module
 make && make install
