@@ -52,5 +52,5 @@ PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
-systemctl start nginx.service
-systemctl daemon-reload
+#systemctl start nginx.service
+#systemctl daemon-reload
