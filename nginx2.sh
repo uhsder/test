@@ -1,47 +1,52 @@
 #!/bin/bash
 apt-get install wget -y
 apt-get update -y
-apt-get groupinstall -y 'Development Tools' && yum install -y vim
-apt-get install -y epel-release
+apt-get install -y build-essential 
+apt-get install -y vim
 apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++
-curdir=$(pwd)
-wget http://luajit.org/download/LuaJIT-2.1.0-beta3.tar.gz && tar xzvf LuaJIT-2.1.0-beta3.tar.gz
-wget https://github.com/simplresty/ngx_devel_kit/archive/v0.3.1rc1.tar.gz && tar xzvf v0.3.1rc1.tar.gz
-wget https://github.com/openresty/lua-nginx-module/archive/v0.10.13.tar.gz && tar xzvf v0.10.13.tar.gz
-wget http://nginx.org/download/nginx-1.14.0.tar.gz && tar xzvf nginx-1.14.0.tar.gz
-wget https://ftp.pcre.org/pub/pcre/pcre-8.40.tar.gz && tar xzvf pcre-8.40.tar.gz
-wget https://www.zlib.net/zlib-1.2.11.tar.gz && tar xzvf zlib-1.2.11.tar.gz
-wget https://www.openssl.org/source/openssl-1.1.0f.tar.gz && tar xzvf openssl-1.1.0f.tar.gz
+curdir=${NGINX_SETUP_DIR}
+wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
+wget https://github.com/simplresty/ngx_devel_kit/archive/${NGXDEVEL_VER}.tar.gz
+wget https://github.com/openresty/lua-nginx-module/archive/${LUANGX_VER}.tar.gz
+wget http://nginx.org/download/nginx-${NGX_VER}.tar.gz
+wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz
+wget https://www.zlib.net/zlib-${ZLIB_VER}.tar.gz
+wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz
+for a in $(ls -1 *.tar.gz); do tar -zxvf $a; done
 rm -rf *.tar.gz
-cd LuaJIT-2.1.0-beta3
+cd LuaJIT-${LUAJIT_VER}
 make install
-ln -sf luajit-2.1.0-beta3 /usr/local/bin/luajit
+ln -sf luajit-${LUAJIT_VER} /usr/local/bin/luajit
 export LUAJIT_LIB=/usr/local/lib/
 export LUAJIT_INC=/usr/local/include/luajit-2.1/
-cd $curdir/nginx-1.14.0/
-./configure --prefix=/opt/nginx \
+cd $curdir/nginx-${NGX_VER}/
+./configure --prefix=/usr/share/nginx \
+         --conf-path=/etc/nginx/nginx.conf \
+         --sbin-path=/usr/sbin \
+         --http-log-path=/var/log/nginx/access.log \
+         --error-log-path=/var/log/nginx/error.log \
+         --pid-path=/run/nginx.pid \
          --with-ld-opt="-Wl,-rpath,$LUAJIT_LIB" \
-         --add-module=$curdir/ngx_devel_kit-0.3.1rc1 \
-         --add-module=$curdir/lua-nginx-module-0.10.13 \
-         --with-pcre=$curdir/pcre-8.40 \
+         --add-module=$curdir/ngx_devel_kit-${NGXDEVEL_VER} \
+         --add-module=$curdir/lua-nginx-module-${LUANGX_VER} \
+         --with-pcre=$curdir/pcre-${PCRE_VER} \
          --with-pcre-jit \
-         --with-zlib=$curdir/zlib-1.2.11 \
-         --with-openssl=$curdir/openssl-1.1.0f \
+         --with-zlib=$curdir/zlib-${ZLIB_VER} \
+         --with-openssl=$curdir/openssl-${OPENSSL_VER} \
          --with-openssl-opt=no-nextprotoneg \
          --with-http_ssl_module
-make
-make install
-touch /opt/nginx/conf/nginx.conf
+make && make install
+touch /etc/nginx/nginx.conf
 echo "[Unit]
 Description=OpsWorks test
 After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]
 Type=forking
-PIDFile=/opt/nginx/logs/nginx.pid
-ExecStartPre=/opt/nginx/sbin/nginx -t
-ExecStart=/opt/nginx/sbin/nginx
-ExecReload=/opt/nginx/sbin/nginx -s reload
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/share/nginx/nginx -t
+ExecStart=/usr/share/nginx/nginx
+ExecReload=/usr/share/nginx/nginx -s reload
 ExecStop=/bin/kill -s QUIT $MAINPID
 PrivateTmp=true
 
