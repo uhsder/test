@@ -13,11 +13,13 @@ wget https://www.zlib.net/zlib-${ZLIB_VER}.tar.gz
 wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz
 for a in $(ls -1 *.tar.gz); do tar -zxvf $a; done
 rm -rf *.tar.gz
+pwd
 cd LuaJIT-${LUAJIT_VER}
 make install
 ln -sf luajit-${LUAJIT_VER} /usr/local/bin/luajit
 export LUAJIT_LIB=/usr/local/lib/
 export LUAJIT_INC=/usr/local/include/luajit-2.1/
+pwd
 cd $curdir/nginx-${NGX_VER}/
 ./configure --prefix=/usr/share/nginx \
          --conf-path=/etc/nginx/nginx.conf \
