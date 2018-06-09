@@ -5,8 +5,8 @@ apt-get install -y vim
 apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++
 curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
-wget https://github.com/simplresty/ngx_devel_kit/archive/${NGXDEVEL_VER}.tar.gz
-wget https://github.com/openresty/lua-nginx-module/archive/${LUANGX_VER}.tar.gz
+wget https://github.com/simplresty/ngx_devel_kit/archive/v${NGXDEVEL_VER}.tar.gz
+wget https://github.com/openresty/lua-nginx-module/archive/v${LUANGX_VER}.tar.gz
 wget http://nginx.org/download/nginx-${NGX_VER}.tar.gz
 wget https://ftp.pcre.org/pub/pcre/pcre-${PCRE_VER}.tar.gz
 wget https://www.zlib.net/zlib-${ZLIB_VER}.tar.gz
