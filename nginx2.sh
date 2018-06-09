@@ -3,7 +3,6 @@ apt-get install -y wget
 apt-get install -y build-essential 
 apt-get install -y vim
 apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++
-cd ${NGINX_SETUP_DIR}
 curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
 wget https://github.com/simplresty/ngx_devel_kit/archive/${NGXDEVEL_VER}.tar.gz
