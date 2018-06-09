@@ -3,7 +3,7 @@ apt-get install -y wget
 apt-get install -y build-essential 
 apt-get install -y vim
 apt-get install -y perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++
-curdir=${NGINX_SETUP_DIR}
+curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
 wget https://github.com/simplresty/ngx_devel_kit/archive/${NGXDEVEL_VER}.tar.gz
 wget https://github.com/openresty/lua-nginx-module/archive/${LUANGX_VER}.tar.gz
@@ -13,13 +13,11 @@ wget https://www.zlib.net/zlib-${ZLIB_VER}.tar.gz
 wget https://www.openssl.org/source/openssl-${OPENSSL_VER}.tar.gz
 for a in $(ls -1 *.tar.gz); do tar -zxvf $a; done
 rm -rf *.tar.gz
-pwd
 cd LuaJIT-${LUAJIT_VER}
 make install
 ln -sf luajit-${LUAJIT_VER} /usr/local/bin/luajit
 export LUAJIT_LIB=/usr/local/lib/
 export LUAJIT_INC=/usr/local/include/luajit-2.1/
-pwd
 cd $curdir/nginx-${NGX_VER}/
 ./configure --prefix=/usr/share/nginx \
          --conf-path=/etc/nginx/nginx.conf \
