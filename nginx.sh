@@ -64,12 +64,12 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
 rm -rf /var/lib/apt/lists/*
-rm -rf /ngx_devel_kit-${NGXDEVEL_VER}
-rm -rf /pcre-${PCRE_VER}
-rm -rf /lua-nginx-module-${LUANGX_VER}
-rm -rf /pcre-${PCRE_VER}
-rm -rf /openssl-${OPENSSL_VER}
-rm -rf /nginx-${NGX_VER}
+rm -rf $curdir/ngx_devel_kit-${NGXDEVEL_VER}
+rm -rf $curdir/pcre-${PCRE_VER}
+rm -rf $curdir/lua-nginx-module-${LUANGX_VER}
+rm -rf $curdir/pcre-${PCRE_VER}
+rm -rf $curdir/openssl-${OPENSSL_VER}
+rm -rf $curdir/nginx-${NGX_VER}
 apt-get remove -y wget vim make gcc g++
 apt autoremove -y fakeroot g++-5 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libpython3.5 libstdc++-5-dev
 systemctl daemon-reload
