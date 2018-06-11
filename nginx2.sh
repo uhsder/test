@@ -1,4 +1,5 @@
 #!/bin/bash
+apt-get update
 apt-get install -y build-essential 
 apt-get install -y wget vim perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++ --no-install-recommends
 curdir=$(pwd)

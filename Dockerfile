@@ -17,13 +17,14 @@ ENV LUAJIT_VER=2.1.0-beta3 \
 
 RUN apt-get update
 RUN apt-get install -y wget 
-RUN wget https://raw.githubusercontent.com/uhsder/test/uhsder-patch-1/nginx2.sh
-RUN chmod +x nginx2.sh
+COPY nginx2.sh ./nginx2.sh
+RUN chmod +x ./nginx2.sh
 RUN /bin/bash -c './nginx2.sh'
+COPY Extras/nginx.conf /etc/nginx/
+COPY Extras/index.html /usr/share/nginx/html/
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
-
 
 EXPOSE 80/tcp 443/tcp
 VOLUME ["${NGINX_SITECONF_DIR}"]
