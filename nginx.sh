@@ -64,6 +64,7 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
 rm -rf /var/lib/apt/lists/*
+rm -rf $curdir/LuaJIT-${LUAJIT_VER}
 rm -rf $curdir/ngx_devel_kit-${NGXDEVEL_VER}
 rm -rf $curdir/pcre-${PCRE_VER}
 rm -rf $curdir/lua-nginx-module-${LUANGX_VER}
