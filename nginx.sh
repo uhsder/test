@@ -55,10 +55,10 @@ After=syslog.target network.target remote-fs.target nss-lookup.target
 [Service]
 Type=forking
 PIDFile=/run/nginx.pid
-ExecStartPre=/usr/share/nginx/nginx -t
-ExecStart=/usr/share/nginx/nginx
-ExecReload=/usr/share/nginx/nginx -s reload
-ExecStop=/bin/kill -s QUIT $MAINPID
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/usr/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT
 PrivateTmp=true
 
 [Install]
@@ -72,5 +72,5 @@ rm -rf /openssl-${OPENSSL_VER}
 rm -rf /nginx-${NGX_VER}
 apt-get remove -y wget vim make gcc g++
 apt autoremove -y fakeroot g++-5 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libpython3.5 libstdc++-5-dev
-systemctl start nginx.service
 systemctl daemon-reload
+systemctl start nginx.service
