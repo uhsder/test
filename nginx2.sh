@@ -1,7 +1,7 @@
 #!/bin/bash
 apt-get update
 apt-get install -y build-essential 
-apt-get install -y wget vim perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++ --no-install-recommends
+apt-get install -y wget perl perl-devel perl-ExtUtils-Embed libxslt libxslt-devel libxml2 libxml2-devel gd gd-devel GeoIP GeoIP-devel make gcc g++ --no-install-recommends
 curdir=$(pwd)
 wget http://luajit.org/download/LuaJIT-${LUAJIT_VER}.tar.gz
 wget https://github.com/simplresty/ngx_devel_kit/archive/v${NGXDEVEL_VER}.tar.gz
@@ -57,5 +57,5 @@ rm -rf $curdir/pcre-${PCRE_VER}
 rm -rf $curdir/openssl-${OPENSSL_VER}
 rm -rf $curdir/nginx-${NGX_VER}
 rm -rf $curdir/zlib-${ZLIB_VER}
-apt-get remove -y wget vim make gcc g++
+apt-get remove -y wget make gcc g++
 apt autoremove -y fakeroot g++-5 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libpython3.5 libstdc++-5-dev
