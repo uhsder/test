@@ -48,6 +48,21 @@ cd $curdir/nginx-${NGX_VER}/
          --with-openssl-opt=no-nextprotoneg \
          --with-http_ssl_module
 make && make install
+echo "[Unit]
+Description=OpsWorks test
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/share/nginx/nginx -t
+ExecStart=/usr/share/nginx/nginx
+ExecReload=/usr/share/nginx/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
 rm -rf /var/lib/apt/lists/*
 rm -rf /ngx_devel_kit-${NGXDEVEL_VER}
 rm -rf /pcre-${PCRE_VER}
@@ -55,4 +70,5 @@ rm -rf /lua-nginx-module-${LUANGX_VER}
 rm -rf /pcre-${PCRE_VER}
 rm -rf /openssl-${OPENSSL_VER}
 rm -rf /nginx-${NGX_VER}
-apt-get remove wget vim make gcc g++
+apt-get remove -y wget vim make gcc g++
+apt autoremove -y fakeroot g++-5 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libpython3.5 libstdc++-5-dev
