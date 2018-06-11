@@ -71,6 +71,7 @@ rm -rf $curdir/lua-nginx-module-${LUANGX_VER}
 rm -rf $curdir/pcre-${PCRE_VER}
 rm -rf $curdir/openssl-${OPENSSL_VER}
 rm -rf $curdir/nginx-${NGX_VER}
+rm -rf $curdir/zlib-${ZLIB_VER}
 apt-get remove -y wget vim make gcc g++
 apt autoremove -y fakeroot g++-5 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libfakeroot libpython3.5 libstdc++-5-dev
 systemctl daemon-reload
