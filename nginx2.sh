@@ -34,23 +34,6 @@ cd $curdir/nginx-${NGX_VER}/
          --with-openssl-opt=no-nextprotoneg \
          --with-http_ssl_module
 make && make install
-touch /etc/nginx/nginx.conf
-echo "[Unit]
-Description=OpsWorks test
-After=syslog.target network.target remote-fs.target nss-lookup.target
-
-[Service]
-Type=forking
-PIDFile=/run/nginx.pid
-ExecStartPre=/usr/share/nginx/nginx -t
-ExecStart=/usr/share/nginx/nginx
-ExecReload=/usr/share/nginx/nginx -s reload
-ExecStop=/bin/kill -s QUIT $MAINPID
-PrivateTmp=true
-
-[Install]
-WantedBy=multi-user.target" > /lib/systemd/system/nginx.service
-#
 rm -rf /var/lib/apt/lists/*
 rm -rf /ngx_devel_kit-${NGXDEVEL_VER}
 rm -rf /pcre-${PCRE_VER}
