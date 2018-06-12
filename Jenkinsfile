@@ -5,10 +5,11 @@ pipeline {
         stage ('Build') {
 
             steps {
-                bash '''#!/bin/bash
-                 git clone https://github.com/uhsder/test
-                 cd test
-                 bash -x nginx.sh
+                sh "#!/bin/bash \n" + 
+                    "git clone https://github.com/uhsder/test" +
+                    "cd test" +
+                    "chmod 755 nginx.sh"
+                    "nginx.sh"
                 '''
             }
         }
