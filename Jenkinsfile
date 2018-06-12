@@ -9,6 +9,7 @@ pipeline {
                     git clone https://github.com/uhsder/test
                     cd test
                     chmod 755 nginx.sh
+                    ls
                     nginx.sh
                 '''
             }
