@@ -13,18 +13,5 @@ pipeline {
                 '''
             }
         }
-
-        stage ('Dockerize') {
-
-            steps {
-                bash '''#!/bin/bash
-                 git clone https://github.com/uhsder/test
-                 cd test
-                 bash dockerInstall.sh
-                 docker build nginxlua .
-                '''
-                }
-            
-        }
     }
 }
