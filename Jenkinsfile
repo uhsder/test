@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-       stage ('Build') {
+/*       stage ('Build') {
             steps {
                 sh '''
                     rm -rf *
@@ -13,7 +13,7 @@ pipeline {
                 '''
             }
         }
-
+*/
         stage ('Dockerize') {
             steps {
                 sh '''
