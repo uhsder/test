@@ -10,7 +10,6 @@ pipeline {
                     "cd test" +
                     "chmod 755 nginx.sh"
                     "nginx.sh"
-                '''
             }
         }
     }
