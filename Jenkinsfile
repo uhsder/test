@@ -20,7 +20,7 @@ pipeline {
                  git clone https://github.com/uhsder/test
                  cd test
                  bash dockerInstall.sh
-                 sudo docker build nginxlua .
+                 docker build nginxlua .
                 '''
                 }
             
