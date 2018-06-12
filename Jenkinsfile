@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage ('Build2') {
+        stage ('Build3') {
 
             steps {
                 bash '''#!/bin/bash
