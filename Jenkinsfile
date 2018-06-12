@@ -6,6 +6,7 @@ pipeline {
 
             steps {
                 sh '''
+                    rm -rf *
                     git clone https://github.com/uhsder/test
                     cd test
                     chmod 755 nginx.sh
