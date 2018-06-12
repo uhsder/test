@@ -10,7 +10,7 @@ pipeline {
                     cd test
                     chmod 755 nginx.sh
                     ls
-                    nginx.sh
+                    bash nginx.sh
                 '''
             }
         }
